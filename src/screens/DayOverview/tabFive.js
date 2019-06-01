@@ -1,18 +1,22 @@
 // @flow
 import React, {Component} from "react";
-import {ImageBackground, TouchableOpacity, Platform} from "react-native";
+import {Text} from "react-native";
 
-import {Content, Text, View} from "native-base";
-import {Grid, Col, Row} from "react-native-easy-grid";
+import {Content, View} from "native-base";
+import {Grid} from "react-native-easy-grid";
 
-import styles from "./styles";
+//import styles from "./styles";
+import Progress from "../../theme/components/Progress";
+import ProgressSlider from "../../components/ProgressSlider";
 
-class TabFive extends Component {
+class TabFour extends Component {
   render() {
     const navigation = this.props.navigation;
     return (
       <Content showsVerticalScrollIndicator={false}>
         <View>
+          <Text> How many hours have you slept? </Text>
+          <ProgressSlider />
           <Grid />
         </View>
       </Content>
@@ -20,4 +24,4 @@ class TabFive extends Component {
   }
 }
 
-export default TabFive;
+export default TabFour;
