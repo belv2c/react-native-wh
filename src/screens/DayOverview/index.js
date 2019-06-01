@@ -20,6 +20,8 @@ import styles from "./styles";
 import TabOne from "./tabOne";
 import TabTwo from "./tabTwo";
 import TabThree from "./tabThree";
+import TabFour from "./tabFour";
+import TabFive from "./tabFive";
 
 
 class DayOverview extends Component {
@@ -48,18 +50,23 @@ class DayOverview extends Component {
           >
             <TabOne navigation={this.props.navigation} />
           </Tab>
+
           <Tab heading="Exercise">
             <TabTwo navigation={this.props.navigation} />
           </Tab>
+
           <Tab heading="Water">
             <TabThree navigation={this.props.navigation} />
           </Tab>
+
           <Tab heading="Alcohol">
-            <Tab navigation={this.props.navigation} />
+            <TabFour navigation={this.props.navigation} />
           </Tab>
+
           <Tab heading="Sleep">
-            <Tab navigation={this.props.navigation} />
+            <TabFive navigation={this.props.navigation} />
           </Tab>
+          
         </Tabs>
       </Container>
     );
