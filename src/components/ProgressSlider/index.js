@@ -6,7 +6,7 @@ export default class ProgressSlider extends Component {
    super(props);
    this.state = {
      //Initial Value of slider
-     sliderValue: 15
+     sliderValue: 0
    };
  }
 
@@ -18,7 +18,7 @@ export default class ProgressSlider extends Component {
 
         {/*Slider with max, min, step and initial value*/}
         <Slider
-          maximumValue={100}
+          maximumValue={50}
           minimumValue={0}
           minimumTrackTintColor="#307ecc"
           maximumTrackTintColor="#000000"
