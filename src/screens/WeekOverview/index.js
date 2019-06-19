@@ -23,6 +23,8 @@ import {
   View,
   Spinner
 } from "native-base";
+import BarChart from "../../components/BarChart";
+import WeekPieChart from "../../components/WeekPieChart";
 
 import { Grid, Col } from "react-native-easy-grid";
 import Carousel from "react-native-carousel-view";
@@ -89,9 +91,11 @@ class WeekOverview extends Component {
             <Text style={styles.overviewHeader}>Your Week</Text>
           </View>
           <Content
-            showsVerticalScrollIndicator={false}
+            showsVerticalScrollIndicator={true}
             style={{ backgroundColor: "#fff" }}
           />
+          <WeekPieChart />
+          <BarChart />
         </Container>
       );
     }
