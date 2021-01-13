@@ -18,7 +18,9 @@ import {
 import { Field, reduxForm } from "redux-form";
 
 import styles from "./styles";
-// import commonColor from "../../theme/variables/commonColor";
+import { connect } from "react-redux";
+import { emailChanged, passwordChanged, loginUser } from "../../actions";
+import Spinner from "../../components/Spinner";
 
 
 const required = value => (value ? undefined : "Required");
@@ -38,8 +40,36 @@ const alphaNumeric = value =>
     : undefined;
 
 declare type Any = any;
+
+
 class LoginForm extends Component {
   textInput: Any;
+
+  onEmailChange(text) {
+    this.props.emailChanged(text);
+  }
+
+  onPasswordChange(text) {
+    this.props.passwordChanged(text);
+  }
+
+  onButtonPress() {
+    const { email, password } = this.props;
+
+    this.props.loginUser({ email, password });
+  }
+
+  renderButton() {
+    if (this.props.loading) {
+      return <Spinner size="large" />;
+    }
+
+    return (
+      <Button onPress={this.onButtonPress.bind(this)}>
+        Login
+      </Button>
+    );
+  }
 
   renderInput({ input, label, type, meta: { touched, error, warning } }) {
     return (
@@ -54,6 +84,10 @@ class LoginForm extends Component {
             ref={c => (this.textInput = c)}
             placeholderTextColor="#FFF"
             style={styles.input}
+            validate={[email, required]}
+            //onChangeText={this.onEmailChange.bind(this)}
+            //onChangeText={input.name === "email" ? this.onEmailChange.bind(this) : this.onPasswordChange.bind(this)}
+            //value={input.name === "email" ? this.props.email : this.props.password}
             placeholder={input.name === "email" ? "Email" : "Password"}
             secureTextEntry={input.name === "password" ? true : false}
             {...input}
@@ -122,12 +156,16 @@ class LoginForm extends Component {
                   component={this.renderInput}
                   type="email"
                   validate={[email, required]}
+                  onChangeText={this.onEmailChange.bind(this)}
+                  value={this.props.email}
                 />
                 <Field
                   name="password"
                   component={this.renderInput}
                   type="password"
                   validate={[alphaNumeric, minLength8, maxLength15, required]}
+                  onChangeText={this.onPasswordChange.bind(this)}
+                  value={this.props.password}
                 />
 
                 <Button
@@ -136,7 +174,8 @@ class LoginForm extends Component {
                   block
                   large
                   style={styles.loginBtn}
-                  onPress={() => this.login()}
+                  onPress={this.onButtonPress.bind(this)}
+                  //onPress={() => this.login()}
                 >
                   <Text
                     style={
@@ -147,7 +186,8 @@ class LoginForm extends Component {
                   >
                     Get Started
                   </Text>
-                </Button>
+                  </Button>
+  
 
                 <View style={styles.otherLinksContainer}>
                   <Left>
@@ -196,7 +236,22 @@ class LoginForm extends Component {
     );
   }
 }
-const Login = reduxForm({
-  form: "login"
+
+
+const mapStateToProps = ({ auth }) => {
+  const { email, password, error, loading } = auth;
+
+  return { email, password, error, loading };
+};
+// const Login = reduxForm({
+//   form: "login"
+// })(LoginForm);
+//  returnLogin;
+
+ LoginForm = reduxForm({
+  form: "LoginForm",
 })(LoginForm);
-export default Login;
+
+export default connect(mapStateToProps, {
+  emailChanged, passwordChanged, loginUser,
+})(LoginForm);
