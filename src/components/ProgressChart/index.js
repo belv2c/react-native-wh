@@ -35,7 +35,6 @@ class ProgressChart extends Component {
     render() {
       return (
           <View>
-          <svg viewBox="0 0 400 400" width="100%" height="100%" />
             <VictoryPie
               standalone={false}
               animate={{ duration: 1000 }}
