@@ -4,7 +4,7 @@ React Native app with react-navigation
 
 ## Clone & Install Dependencies
 
-- git clone https://github.com/invertase/react-native-wh.git
+- git clone https://github.com/belv2c/react-native-wh.git
 
 - cd react-native-wh (cd into your newly created project directory).
 
