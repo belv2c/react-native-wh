@@ -58,6 +58,6 @@
     "redux-thunk": "2.3.0",
     "remote-redux-devtools": "0.5.13",
     "remote-redux-devtools-on-debugger": "^0.8.3",
-    "victory-native": "^32.0.2"
+    "victory-native": "^36.6.8"
   }
 }
